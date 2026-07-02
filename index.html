@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Vacaciones en la Biblioteca 2026</title>
+    <link rel="preconnect" href="https://
+
+
+GitHub
+
+
+Manus is an AI Agent and can make mistakes. Please double-check before use.
+
+Publicar
+client
+/
+src
+/
+data
+/
+courses.ts
+123456789101112131415161718192021222324252627282930
+export type CourseCategory = 'art' | 'science' | 'learning' | 'wellness';
+
+export interface Course {
+  id: string;
+  name: string;
+  category: CourseCategory;
+  minAge: number;
+  maxAge: number | null;
+  schedule: string;
+  dates: string;
+
+index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Vacaciones en la Biblioteca 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563EB;
+            --primary-light: #DBEAFE;
+            --accent: #FF9500;
+            --accent-light: #FEF3C7;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --purple: #8B5CF6;
+            --purple-light: #EDE9FE;
+            --foreground: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --background: #f9fafb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, var(--background));
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+        }
+
+        .header-title h1 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .header-right p:first-child {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        .header-right p:last-child {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--foreground);
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 0.75rem 1.875rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .hero-button:hover {
+            background: #1e40af;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 320px;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Filters Section */
+        .filters {
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: var(--background);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .results-count {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .results-count strong {
+            color: var(--foreground);
+        }
+
+        /* Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .course-card {
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: white;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .course-card.art {
+            background: var(--accent-light);
+            border-color: #FBBF24;
+        }
+
+        .course-card.science {
+            background: var(--success-light);
+            border-color: #6EE7B7;
+        }
+
+        .course-card.learning {
+            background: var(--purple-light);
+            border-color: #D8B4FE;
+        }
+
+        .course-card.wellness {
+            background: var(--primary-light);
+            border-color: #93C5FD;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--foreground);
+            flex: 1;
+        }
+
+        .course-type {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        .course-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .course-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .course-description {
+            font-size: 0.875rem;
+            color: var(--foreground);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .course-cupos {
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .no-results p {
+            font-size: 1.125rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 2rem 0;
+            background: rgba(37, 99, 235, 0.05);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-box h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box li {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .info-box p {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .modal-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-light);
+            color: #92400e;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h4 {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-section p {
+            font-size: 1rem;
+            color: var(--foreground);
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-info-item {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .modal-info-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .modal-info-content p:first-child {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-info-content p:last-child {
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--foreground);
+            color: white;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer p:first-child {
+            font-weight: 600;
+        }
+
+        footer p:last-child {
+            font-size: 0.875rem;
+            opacity: 0.75;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h2 {
+                font-size: 1.875rem;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="header-logo">📚⭐</div>
+                    <div class="header-title">
+                        <h1>Biblioteca</h1>
+                        <p>Verano 2026</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <p>Mis Vacaciones en la Biblioteca</p>
+                    <p>20 junio - 7 agosto</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="grid-column: 1 / -1;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                <div class="hero-content">
+                    <h2>Explora 16 Aventuras Este Verano</h2>
+                    <p>Descubre talleres de arte, ciencia, aprendizaje y diversión para todas las edades. Desde robótica hasta encuadernación, encuentra tu próxima pasión.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">16</span>
+                            <span class="stat-label">Talleres</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Categorías</span>
+                        </div>
+                    </div>
+                    <button class="hero-button">Descubre los Cursos</button>
+                </div>
+                <div class="hero-image">
+                    <img src="/manus-storage/hero-banner_5b6606c3.png" alt="Cursos de Verano">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters">
+        <div class="container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Busca por nombre de taller, tallerista...">
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filtrar por edad</label>
+                <div class="filter-buttons" id="ageFilters"></div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Filtrar por categoría</label>
+                <div class="filter-buttons" id="categoryFilters"></div>
+            </div>
+
+            <div class="results-count">
+                Mostrando <strong id="resultsCount">16</strong> de <strong>16</strong> cursos
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="container">
+        <div id="coursesGrid" class="courses-grid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No se encontraron cursos</p>
+            <p style="font-size: 0.875rem;">Intenta ajustar los filtros o la búsqueda</p>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Requisitos</h3>
+                    <ul>
+                        <li>Llenar cédula de inscripción con datos del participante y tutor</li>
+                        <li>Traer gafete proporcionado por la institución</li>
+                        <li>Llevar refrigerio, agua y papel higiénico</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>Ubicación</h3>
+                    <p><strong>12 Oriente Norte No. 2, Col. Centro</strong></p>
+                    <p style="margin-top: 1rem;"><strong>Horarios de atención:</strong></p>
+                    <p>Lunes a viernes: 8:30 a 19:30 H<br>Sábados: 9:30 a 13:30 H</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Notas Importantes</h3>
+                    <ul>
+                        <li>Los niños que aún no sepan ir al baño requieren acompañante</li>
+                        <li>Cada participante debe traer su gafete</li>
+                        <li>Consulta los requisitos específicos de cada taller</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <span class="modal-badge" id="modalCategory"></span>
+            </div>
+
+            <div class="modal-info-grid" id="modalInfoGrid"></div>
+
+            <div class="modal-section">
+                <h4>Descripción</h4>
+                <p id="modalDescription"></p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Tallerista</h4>
+                <p id="modalTallerista"></p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Ubicación</h4>
+                <p id="modalLocation"></p>
+            </div>
+
+            <div class="modal-section" id="modalNotesSection" style="display: none;">
+                <h4>Nota</h4>
+                <p id="modalNotes"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Mis Vacaciones en la Biblioteca 2026</p>
+            <p>Para más información, visita la biblioteca o contacta a nuestro equipo</p>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de cursos
+        const courses = [
+            { id: '12', name: 'Ilustración, dibujo y acuarela', category: 'art', minAge: 9, maxAge: null, schedule: '13:00 a 14:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 25, cost: '$250 semanal', description: 'Fomentar la creatividad, la expresión artística y el trabajo en comunidad.', tallerista: 'Carlos Andrés Padilla', location: 'A un costado de la Sala Braille', type: 'individual' },
+            { id: '15', name: 'Encuadernación para principiantes', category: 'art', minAge: 9, maxAge: 17, schedule: '12:00 a 14:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$150 semanal', description: 'Aprender técnicas básicas de encuadernación artesanal para crear cuadernos y libros de manera práctica y creativa.', tallerista: 'Luis Fernando Díaz', location: 'Sala Alfa', type: 'individual' },
+            { id: '11', name: 'Mi personaje favorito en piñata', category: 'art', minAge: 7, maxAge: 15, schedule: '10:00-11:30 y 11:30 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$350 semanal (incluye materiales)', description: 'Elaborar cada piñata con el personaje de su elección, rescatando las técnicas artesanales así como la creatividad.', tallerista: 'Tonantzin García', location: 'Vestíbulo de la biblioteca', notes: 'Solo llevar: tijeras, lápiz y periódico', type: 'individual' },
+            { id: 'combo-3', name: 'Combo "Arte y Manualidad"', category: 'art', minAge: 7, maxAge: 12, schedule: '9:30 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$400 semanal (incluye material)', description: 'Aprenderán a mezclar pintura, realizar bastidores con material reciclado, conocerán acerca de los artistas y sus piezas representativas, técnicas para la aplicación de color con pinturas acrílicas en diferentes superficies.', tallerista: 'Miriam G. López', location: 'Ludoteca', type: 'combo' },
+            { id: 'combo-4', name: 'Combo "Escuelita Kids"', category: 'art', minAge: 7, maxAge: 12, schedule: '10:00 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 25, cost: '$400 semanal', description: 'Fomentar la creatividad, la expresión artística y el trabajo en comunidad, a través de actividades de arte, baile y manualidades (lienzo en relieve, figuras 3D en yeso y construcción y decoración de una casita).', tallerista: 'Carlos Andrés Padilla', location: 'A un costado de la Sala Braille', type: 'combo' },
+            { id: '9', name: 'Robótica educativa', category: 'science', minAge: 5, maxAge: null, schedule: '9:00 a 11:30 H', dates: 'Del 13 de julio al 07 de agosto (secuencial)', maxParticipants: 15, cost: '$800 semanal (incluye material didáctico y kit)', description: 'En este taller se combina la ciencia, la tecnología, la ingeniería y las matemáticas, para desarrollar la construcción y programación de robots.', tallerista: 'William T. Morales Péez', location: 'Sala Alfa', type: 'individual' },
+            { id: '13', name: 'Ciencia en el espacio', category: 'science', minAge: 10, maxAge: 15, schedule: '10:00 a 12:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$350 semanal ó $900 las tres semanas (incluye material)', description: 'Los participantes desarrollarán el pensamiento científico y realizarán un hábitat espacial. Abordarán los siguientes temas: los misterios del espacio, el planeta vivo y sus secretos, entre otros.', tallerista: 'Hannia I. y Montserrat Juárez', location: 'Sala de ciencias climatizada', type: 'individual' },
+            { id: '14', name: 'Maker lab', category: 'science', minAge: 10, maxAge: 15, schedule: '10:00 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$450 semanal ó $1,200 todo el verano', description: 'En este taller aprenderán a armar un robot (carro rescatista), armar un brazo robot y una app para controlar el robot.', tallerista: 'Cinthia Juárez y Hugo Alfaro', location: 'Sala de ciencias (Climatizada)', type: 'individual' },
+            { id: 'combo-5', name: 'Combo infantil "Preguntas al estante o al buscador"', category: 'science', minAge: 8, maxAge: 12, schedule: '9:30 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 15, cost: '$350 una semana o $950 tres semanas (incluye material)', description: 'Adquirirán conocimientos de computación, ciencia básica y arte. Tres grupos rotativos.', tallerista: 'Lourdes Alfaro, Alberto Carlos Blas, Jorge A. Pérez, José I. García', location: 'Esquina Franklin y Sala Alfa', type: 'combo' },
+            { id: 'combo-6', name: 'Combo infantil "Aprende con ciencia"', category: 'science', minAge: 7, maxAge: 12, schedule: '9:30 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 20, cost: '$400 una semana o $1000 tres semanas', description: 'Los niños van a aprender a: Cuidar el medio ambiente, razonar con las matemáticas y entender la física y la química cotidiana, pensar con conciencia, etc.', tallerista: 'José Manuel Meraz', location: 'Sala general', notes: 'Materiales: Libreta de reúso, lápiz, borrador y un mandil', type: 'combo' },
+            { id: '10', name: 'Ajedrez para principiantes', category: 'learning', minAge: 5, maxAge: null, schedule: '9:30-11:00 H y 11:00 a 12:30 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 25, cost: '$400 semanal', description: 'Desarrollarán habilidades cognitivas como el pensamiento lógico, estimulación de la memoria, entre otras.', tallerista: 'Miguel A. Miravete y Carolina E. Borges', location: 'Vestíbulo de la biblioteca', type: 'individual' },
+            { id: 'combo-1', name: 'Combo preescolar "Juego, me divierto y aprendo"', category: 'learning', minAge: 4, maxAge: 5, schedule: '9:30 a 12:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 18, cost: '$330 semanal o $900 (tres semanas)', description: 'Estimular el desarrollo cognitivo y emocional de los niños, la música el respeto a las mascotas y datos curiosos de astronomía, dinosaurios e insectos y actividades creativas.', tallerista: 'Edith de la Cruz, Yadira Ruíz, Isabel de la Cruz', location: 'Sala Braille', type: 'combo' },
+            { id: 'combo-2', name: 'Combo infantil "¿Quién teme al lobo?"', category: 'learning', minAge: 6, maxAge: 7, schedule: '9:30 a 13:00 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 18, cost: '$350 semanal o $950 tres semanas (incluye material)', description: 'Semana 1: Conocer sobre los animales y desarrollar admiración, respeto y amor por los seres vivos. Semana 2: Crear historias animadas con plastilina. Semana 3: Promover la socialización y la amistad a través de juegos grupales y ejercicios que pretenden enseñar la importancia de compartir, respetar turnos y esperar.', tallerista: 'Verónica Nava, Pauline E. Andrade, Alicia Farrera', location: 'Colección Infantil', type: 'combo' },
+            { id: 'combo-7', name: 'Combo "Mentes en movimiento: tu aventura en inglés"', category: 'learning', minAge: 7, maxAge: 11, schedule: '9:30 a 12:30 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 10, cost: '$400 una semana o $1000 tres semanas', description: 'Se enseñará inglés de manera divertida y dinámica, reglas básicas de ajedrez y expresiones creativas.', tallerista: 'Esmeralda Sánchez', location: 'Sala Alfa', type: 'combo' },
+            { id: '8', name: 'Tiempos de ternura: estimulación emocional y corporal', category: 'wellness', minAge: 2, maxAge: 3, schedule: '9:30 a 10:30 H', dates: '20-24 Jul., 27-31 Jul., 3-7 Ago', maxParticipants: 12, cost: '$500 semanal o $900 por 2 semanas ó $1,200 por 3 semanas', description: 'Se integran elementos de yoga infantil, juego sensorial, arte temprano, matroliteratura, narrativa, prácticas de presencia emocional en un ambiente respetuoso y lúdico.', tallerista: 'Pss. Victoria Pantoja y Rodrigo González', location: 'Bebeteca', type: 'individual' },
+            { id: '16', name: 'Deportiletras', category: 'wellness', minAge: 0, maxAge: null, schedule: '10:00 a 13:00 H', dates: 'Del 20 jul-7 de ago', maxParticipants: 10, cost: '$15 por sesión', description: 'Enseñar y jugar los diferentes juegos de mesa tradicionales que además ayudarán a fomentar la convivencia familiar.', tallerista: 'Laura Pineda y Gladis Arreola', location: 'Vestíbulo de la Biblioteca', notes: 'Público en general, niños pequeños acompañados de un adulto', type: 'individual' }
+        ];
+
+        const categoryLabels = {
+            art: 'Arte y Creatividad',
+            science: 'Ciencia y Tecnología',
+            learning: 'Desarrollo Cognitivo',
+            wellness: 'Bienestar y Recreación'
+        };
+
+        const ageRanges = [
+            { label: 'Todas las edades', value: null },
+            { label: '2-5 años', value: [2, 5] },
+            { label: '6-8 años', value: [6, 8] },
+            { label: '9-12 años', value: [9, 12] },
+            { label: '13+ años', value: [13, 100] }
+        ];
+
+        let selectedAge = null;
+        let selectedCategory = null;
+        let searchTerm = '';
+        let selectedCourse = null;
+
+        // Initialize filters
+        function initializeFilters() {
+            const ageContainer = document.getElementById('ageFilters');
+            const categoryContainer = document.getElementById('categoryFilters');
+
+            ageRanges.forEach(range => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = range.label;
+                btn.onclick = () => {
+                    selectedAge = range.value;
+                    updateFilters();
+                    renderCourses();
+                };
+                ageContainer.appendChild(btn);
+            });
+
+            const allBtn = document.createElement('button');
+            allBtn.className = 'filter-btn active';
+            allBtn.textContent = 'Todas';
+            allBtn.onclick = () => {
+                selectedCategory = null;
+                updateFilters();
+                renderCourses();
+            };
+            categoryContainer.appendChild(allBtn);
+
+            Object.entries(categoryLabels).forEach(([key, label]) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = label;
+                btn.onclick = () => {
+                    selectedCategory = key;
+                    updateFilters();
+                    renderCourses();
+                };
+                categoryContainer.appendChild(btn);
+            });
+        }
+
+        function updateFilters() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const ageButtons = document.getElementById('ageFilters').querySelectorAll('button');
+            ageButtons.forEach((btn, idx) => {
+                if ((selectedAge === null && idx === 0) || (selectedAge && JSON.stringify(selectedAge) === JSON.stringify(ageRanges[idx].value))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const categoryButtons = document.getElementById('categoryFilters').querySelectorAll('button');
+            categoryButtons.forEach((btn, idx) => {
+                if ((selectedCategory === null && idx === 0) || (idx > 0 && selectedCategory === Object.keys(categoryLabels)[idx - 1])) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function filterCourses() {
+            return courses.filter(course => {
+                if (selectedAge) {
+                    const [minAge, maxAge] = selectedAge;
+                    const courseMaxAge = course.maxAge || 100;
+                    if (course.minAge > maxAge || courseMaxAge < minAge) return false;
+                }
+
+                if (selectedCategory && course.category !== selectedCategory) return false;
+
+                if (searchTerm) {
+                    const search = searchTerm.toLowerCase();
+                    if (!course.name.toLowerCase().includes(search) &&
+                        !course.description.toLowerCase().includes(search) &&
+                        !course.tallerista.toLowerCase().includes(search)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+        }
+
+        function renderCourses() {
+            const filtered = filterCourses();
+            const grid = document.getElementById('coursesGrid');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+
+            resultsCount.textContent = filtered.length;
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            filtered.forEach(course => {
+                const card = document.createElement('div');
+                card.className = `course-card ${course.category}`;
+                card.onclick = () => openModal(course);
+
+                const ageDisplay = course.maxAge ? `${course.minAge}-${course.maxAge}` : `${course.minAge}+`;
+
+                card.innerHTML = `
+                    <div class="course-header">
+                        <div>
+                            <div class="course-name">${course.name}</div>
+                            <div class="course-type">${course.type === 'combo' ? 'Combo' : 'Individual'}</div>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-info-item">👥 ${ageDisplay} años</div>
+                        <div class="course-info-item">💰 ${course.cost}</div>
+                        <div class="course-info-item">🕐 ${course.schedule}</div>
+                    </div>
+                    <div class="course-description">${course.description}</div>
+                    <div class="course-footer">
+                        <span class="course-cupos">${course.maxParticipants} cupos</span>
+                        <span>Ver detalles →</span>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(course) {
+            selectedCourse = course;
+            const modal = document.getElementById('modal');
+            const ageDisplay = course.maxAge ? `${course.minAge}-${course.maxAge}` : `${course.minAge}+`;
+
+            document.getElementById('modalTitle').textContent = course.name;
+            document.getElementById('modalCategory').textContent = categoryLabels[course.category];
+            document.getElementById('modalDescription').textContent = course.description;
+            document.getElementById('modalTallerista').textContent = course.tallerista;
+            document.getElementById('modalLocation').textContent = course.location;
+
+            const infoGrid = document.getElementById('modalInfoGrid');
+            infoGrid.innerHTML = `
+                <div class="modal-info-item">
+                    <div class="modal-info-icon">👥</div>
+                    <div class="modal-info-content">
+                        <p>Edad</p>
+                        <p>${ageDisplay} años</p>
+                    </div>
+                </div>
+                <div class="modal-info-item">
+                    <div class="modal-info-icon">🕐</div>
+                    <div class="modal-info-content">
+                        <p>Horario</p>
+                        <p>${course.schedule}</p>
+                    </div>
+                </div>
+                <div class="modal-info-item">
+                    <div class="modal-info-icon">📅</div>
+                    <div class="modal-info-content">
+                        <p>Fechas</p>
+                        <p>${course.dates}</p>
+                    </div>
+                </div>
+                <div class="modal-info-item">
+                    <div class="modal-info-icon">💰</div>
+                    <div class="modal-info-content">
+                        <p>Costo</p>
+                        <p>${course.cost}</p>
+                    </div>
+                </div>
+            `;
+
+            if (course.notes) {
+                document.getElementById('modalNotesSection').style.display = 'block';
+                document.getElementById('modalNotes').textContent = course.notes;
+            } else {
+                document.getElementById('modalNotesSection').style.display = 'none';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderCourses();
+        });
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+
+        // Initialize
+        initializeFilters();
+        renderCourses();
+    </script>
+</body>
+</html>
+¿Cómo mejorar la legibilidad del tríptico de cursos de verano? - Manus
